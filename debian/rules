@@ -3,11 +3,15 @@
 
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
+export DEB_CFLAGS_MAINT_APPEND = -fPIC
+export DEB_CXXFLAGS_MAINT_APPEND = -fPIC
+export DEB_LDFLAGS_MAINT_APPEND = -fPIC
 
 %:
 	dh $@
 
 override_dh_auto_configure:
+	NOCONFIGURE=1 ./autogen.sh
 	dh_auto_configure --
 
 .PHONY: override_dh_strip
